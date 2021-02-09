@@ -1,17 +1,17 @@
 import React from 'react';
-import Person from './Person';
+import Persons from './Persons';
 
-const Phonebook = ({ persons, newFilter }) => {
-  const results = !newFilter
+const Phonebook = ({ persons, filter, deletePerson }) => {
+  const results = !filter
     ? persons
-    : persons.filter((person) => person.name.toLowerCase().includes(newFilter.toLowerCase()));
+    : persons.filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()));
 
   return (
-    <ul>
+    <div>
       {results.map((person) => (
-        <Person person={person} key={person.name} />
+        <Persons key={person.name} person={person} deletePerson={deletePerson} />
       ))}
-    </ul>
+    </div>
   );
 };
 

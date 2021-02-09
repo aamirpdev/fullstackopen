@@ -48,11 +48,13 @@ const App = () => {
     },
   ];
 
-  const courseList = courses.map((course) => {
-    return <Course key={course.id} course={course} />;
-  });
-
-  return <div>{courseList}</div>;
+  return (
+    <div>
+      {courses.map((course, i) => {
+        return <Course key={i} course={course} />;
+      })}
+    </div>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));
