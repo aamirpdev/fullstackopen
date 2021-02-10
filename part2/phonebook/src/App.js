@@ -4,6 +4,8 @@ import PersonForm from './components/PersonForm';
 import Phonebook from './components/Phonebook';
 import person from './services/person';
 import personService from './services/person';
+import Notification from './components/Notification';
+import './index.css';
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -72,11 +74,10 @@ const App = () => {
           }, 5000);
         })
         .catch((error) => {
-          setMessage(`[ERROR] ${error.response.data.error}`);
+          setMessage(`${newName} wasn't successfully added`);
           setTimeout(() => {
             setMessage(null);
           }, 5000);
-          console.log(error.response.data);
         });
     }
   };
@@ -87,10 +88,10 @@ const App = () => {
       personService
         .deleteIt(person.id)
         .then((response) => {
-          setMessage({ text: `Deleted '${person.name}`, class: 'info' });
+          setMessage(`Deleted ${person.name}`);
         })
         .catch((error) => {
-          setMessage({ text: `${error.response.data.error}`, class: 'error' });
+          setMessage(`Issue deleting ${person.name}`);
         });
       setPersons(persons.filter((p) => p.id !== id));
       setTimeout(() => {
@@ -106,6 +107,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} />
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <PersonForm
         newName={newName}
