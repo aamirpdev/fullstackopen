@@ -1,0 +1,7 @@
+GET https://evening-bayou-51595.herokuapp.com/api/persons HTTP/1.1
+content-type: application/json
+
+{
+    "name": "aamir",
+    "number": "1"
+}
