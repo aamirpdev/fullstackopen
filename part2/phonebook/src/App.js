@@ -74,10 +74,11 @@ const App = () => {
           }, 5000);
         })
         .catch((error) => {
-          setMessage(`${newName} wasn't successfully added`);
+          setMessage(`[ERROR] ${error.response.data.error}`);
           setTimeout(() => {
             setMessage(null);
           }, 5000);
+          console.log(error.response.data);
         });
     }
   };
