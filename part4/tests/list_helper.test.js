@@ -7,141 +7,54 @@ test('dummy returns one', () => {
   expect(result).toBe(1)
 })
 
-describe('total likes', () => {
-  test('of empty list is zero', () => {
-    const blogs = []
-    const result = listHelper.totalLikes(blogs)
-    expect(result).toBe(0)
-  })
-
-  test('when list has only one blog equal the likes of that', () => {
-    const blogs = [
-      {
-        title: 'testTitle',
-        author: 'testAuthor',
-        url: 'testUrl',
-        likes: 10,
-        id: '6033c3b6f4da3e52e9b3eefb',
-      },
-    ]
-    const result = listHelper.totalLikes(blogs)
-    expect(result).toBe(10)
-  })
-
-  test('of a bigger list is calculated right', () => {
-    const blogs = [
-      {
-        title: 'testTitle',
-        author: 'testAuthor',
-        url: 'testUrl',
-        likes: 10,
-        id: '6033c3b6f4da3e52e9b3eefb',
-      },
-      {
-        title: 'abc',
-        author: 'asdf',
-        url: 'abc.com',
-        likes: 100,
-        id: '6034181f68c2ef5cd06610fe',
-      },
-      {
-        title: 'mytitle',
-        author: 'my author',
-        url: 'url.co.uk',
-        likes: 0,
-        id: '6034ee9c2002516f6ce193b1',
-      },
-    ]
-    const result = listHelper.totalLikes(blogs)
-    expect(result).toBe(110)
-  })
+test('1 blog with 1 like returns 1 like', () => {
+  const blogs = [1]
+  const result = listHelper.totalLikes(blogs)
+  expect(result).toBe(1)
 })
 
-describe('favourite blog', () => {
-  const listWithOneBlog = [
-    {
-      _id: '5a422aa71b54a676234d17f8',
-      title: 'Go To Statement Considered Harmful',
-      author: 'Edsger W. Dijkstra',
-      url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-      likes: 5,
-      __v: 0,
-    },
-  ]
-
+test('2 blogs with different numbers of likes, equals the sum of those likes', () => {
   const blogs = [
     {
-      _id: '5a422a851b54a676234d17f7',
-      title: 'React patterns',
-      author: 'Michael Chan',
-      url: 'https://reactpatterns.com/',
-      likes: 7,
+      _id: '5f871821174381019c7c4b0f',
+      title: 'A nice blog',
+      author: 'Writy McWriteface',
+      url: 'www.aniceblog.com',
+      likes: 4,
       __v: 0,
     },
     {
-      _id: '5a422aa71b54a676234d17f8',
-      title: 'Go To Statement Considered Harmful',
-      author: 'Edsger W. Dijkstra',
-      url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-      likes: 5,
-      __v: 0,
-    },
-    {
-      _id: '5a422b3a1b54a676234d17f9',
-      title: 'Canonical string reduction',
-      author: 'Edsger W. Dijkstra',
-      url: 'http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html',
-      likes: 12,
-      __v: 0,
-    },
-    {
-      _id: '5a422b891b54a676234d17fa',
-      title: 'First class tests',
-      author: 'Robert C. Martin',
-      url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll',
-      likes: 10,
-      __v: 0,
-    },
-    {
-      _id: '5a422ba71b54a676234d17fb',
-      title: 'TDD harms architecture',
-      author: 'Robert C. Martin',
-      url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html',
-      likes: 0,
-      __v: 0,
-    },
-    {
-      _id: '5a422bc61b54a676234d17fc',
-      title: 'Type wars',
-      author: 'Robert C. Martin',
-      url: 'http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html',
-      likes: 2,
+      _id: '5f871874174381019c7c4b10',
+      title: 'How to be so cute he implodes: A quick guide!',
+      author: 'Georgie',
+      url: 'www.thegeorgieblogs.com',
+      likes: 1,
       __v: 0,
     },
   ]
-  const expected = {
-    _id: '5a422aa71b54a676234d17f8',
-    title: 'Go To Statement Considered Harmful',
-    author: 'Edsger W. Dijkstra',
-    url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-    likes: 5,
-    __v: 0,
-  }
-  const expectedTwo = {
-    _id: '5a422b3a1b54a676234d17f9',
-    title: 'Canonical string reduction',
-    author: 'Edsger W. Dijkstra',
-    url: 'http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html',
-    likes: 12,
-    __v: 0,
-  }
+  const result = listHelper.totalLikes(blogs.map((blogs) => blogs.likes))
+  expect(result).toBe(5)
+})
 
-  test('of one blog', () => {
-    const result = listHelper.favouriteBlog(listWithOneBlog)
-    expect(result).toEqual(expected)
-  })
-  test('of multiple blog', () => {
-    const result = listHelper.favouriteBlog(blogs)
-    expect(result).toEqual(expectedTwo)
-  })
+test('2 blogs with different numbers of likes, blog with the most likes returned', () => {
+  const blogs = [
+    {
+      _id: '5f871821174381019c7c4b0f',
+      title: 'A nice blog',
+      author: 'Writy McWriteface',
+      url: 'www.aniceblog.com',
+      likes: 4,
+      __v: 0,
+    },
+    {
+      _id: '5f871874174381019c7c4b10',
+      title: 'How to be so cute he implodes: A quick guide!',
+      author: 'Georgie',
+      url: 'www.thegeorgieblogs.com',
+      likes: 1,
+      __v: 0,
+    },
+  ]
+  const result = listHelper.favouriteBlog(blogs)
+  expect(result).toEqual(blogs[0])
 })

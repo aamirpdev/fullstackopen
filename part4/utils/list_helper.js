@@ -3,28 +3,19 @@ const dummy = (blogs) => {
 }
 
 const totalLikes = (blogs) => {
-  let sum = 0
-  for (let i = 0; i < blogs.length; i++) {
-    sum += blogs[i].likes
-  }
-  return sum
+  const reducer = (accumulator, currentValue) => accumulator + currentValue
+  return blogs.reduce(reducer)
 }
 
 const favouriteBlog = (blogs) => {
-  let max_likes = -1
-
-  for (let i = 0; i < blogs.length; i++) {
-    if (blogs[i].likes > max_likes) {
-      max_likes = blogs[i].likes
-    }
-  }
-
-  for (let i = 0; i < blogs.length; i++) {
-    if (blogs[i].likes === max_likes) {
-      return blogs[i]
-    }
-  }
+  const maxLikes = Math.max(...blogs.map((blog) => blog.likes))
+  return blogs.find((blog) => blog.likes === maxLikes)
 }
+
+// const mostBlogs = (blogs) => {
+//     let authors = blogs.map(blog=> blog.author)
+
+// }
 
 module.exports = {
   dummy,
