@@ -2,23 +2,12 @@ const dummy = (blogs) => {
   return 1
 }
 
-const totalLikes = (blogs) => {
-  const reducer = (accumulator, currentValue) => accumulator + currentValue
-  return blogs.reduce(reducer)
+const totalLikes = (posts) => {
+  const likes = posts.map((post) => post.likes)
+
+  const reducer = (sum, item) => sum + item
+
+  return likes.length === 0 ? 0 : likes.reduce(reducer, 0)
 }
 
-const favouriteBlog = (blogs) => {
-  const maxLikes = Math.max(...blogs.map((blog) => blog.likes))
-  return blogs.find((blog) => blog.likes === maxLikes)
-}
-
-// const mostBlogs = (blogs) => {
-//     let authors = blogs.map(blog=> blog.author)
-
-// }
-
-module.exports = {
-  dummy,
-  totalLikes,
-  favouriteBlog,
-}
+module.exports = { dummy, totalLikes }
