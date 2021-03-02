@@ -1,10 +1,10 @@
 POST http://localhost:3003/api/login
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InIwMHQiLCJpZCI6IjYwM2Q0NWVjNjc0Y2RlZDAzZmQ2MDdkMiIsImlhdCI6MTYxNDYyODM0Nn0.h8iwmgqpN8alhEEUa_kspVTgGKpTt6TBihf8CNluL5Y
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1tbW1tIiwiaWQiOiI2MDNlNGQ2MDcyNzM4YWUyMGY3ODczMjAiLCJpYXQiOjE2MTQ2OTU3ODV9.SVfiuQZlX3uDbI7-RtqEmclS1jCR2-vrhFtEmz3WeIY
 
 {
-    "title":"r00t",
-    "author":"r00t",
-    "url":"google.com",
-    "likes": 1000
+"title":"aaaaa",
+"author":"aaaaa",
+"url":"www.aaaaa.com",
+"likes":10000
 }
